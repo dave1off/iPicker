@@ -81,7 +81,6 @@
         self.secondComponentSlider.value = currentTextFieldValue / 255.f;
     } else {
         self.thirdComponentSlider.value = currentTextFieldValue / 255.f;
-        NSLog(@"Here");
     }
     
     [self handleSlide:nil];
