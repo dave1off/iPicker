@@ -1,6 +1,6 @@
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITextFieldDelegate>
 
 @end
 
@@ -12,30 +12,36 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
+
+#pragma mark - IBActions
 
 -(IBAction)handleSegmentedControl:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == DCColorModelRGB) {
         self.firstComponentSlider.tintColor = [UIColor redColor];
         self.secondComponentSlider.tintColor = [UIColor greenColor];
         self.thirdComponentSlider.tintColor = [UIColor blueColor];
-        
-        [self handleSlide:nil];
-        self.zone.hidden = NO;
-        
     } else {
+        
         self.firstComponentSlider.tintColor =
         self.secondComponentSlider.tintColor =
         self.thirdComponentSlider.tintColor =
-        [UIColor whiteColor];
+                    [UIColor grayColor];
         
-        [self handleSlide:nil];
-        self.zone.hidden = YES;
     }
+    
+    [self handleSlide:nil];
+    self.hexacademicalColorCodeLabel.hidden = !self.hexacademicalColorCodeLabel.hidden;
+    
+    self.firstComponentTextField.hidden =
+    self.secondComponentTextField.hidden =
+    self.thirdComponentTextField.hidden =
+                    !self.firstComponentTextField.hidden;
 }
 
 -(IBAction)handleSlide:(UISlider *)sender {
+    NSInteger currentSliderValue = (NSInteger)(sender.value * 255);
+    
     [UIView animateWithDuration:0.3f
                      animations:^{
                          if (self.colorModelOption.selectedSegmentIndex == DCColorModelRGB) {
@@ -51,6 +57,94 @@
                          }
                          
                      }];
+    
+    if ([sender isEqual:self.firstComponentSlider]) {
+        self.firstComponentTextField.text = [NSString stringWithFormat:@"%ld", currentSliderValue];
+    } else if ([sender isEqual:self.secondComponentSlider]) {
+        self.secondComponentTextField.text = [NSString stringWithFormat:@"%ld", currentSliderValue];
+    } else {
+        self.thirdComponentTextField.text = [NSString stringWithFormat:@"%ld", currentSliderValue];
+    }
+    
+    [self setHexacademicalColorCodeLabelText:self.hexacademicalColorCodeLabel
+                              viaFirstNumber:(NSInteger)(self.firstComponentSlider.value * 255)
+                                secondNumber:(NSInteger)(self.secondComponentSlider.value * 255)
+                              andThirdNumber:(NSInteger)(self.thirdComponentSlider.value * 255)];
+}
+
+-(IBAction)handleTextField:(UITextField *)sender {
+    NSInteger currentTextFieldValue = [sender.text integerValue];
+    
+    if ([sender isEqual:self.firstComponentTextField]) {
+        self.firstComponentSlider.value = currentTextFieldValue / 255.f;
+    } else if ([sender isEqual:self.secondComponentTextField]) {
+        self.secondComponentSlider.value = currentTextFieldValue / 255.f;
+    } else {
+        self.thirdComponentSlider.value = currentTextFieldValue / 255.f;
+        NSLog(@"Here");
+    }
+    
+    [self handleSlide:nil];
+    [self setHexacademicalColorCodeLabelText:self.hexacademicalColorCodeLabel
+                              viaFirstNumber:(NSInteger)(self.firstComponentSlider.value * 255)
+                                secondNumber:(NSInteger)(self.secondComponentSlider.value * 255)
+                              andThirdNumber:(NSInteger)(self.thirdComponentSlider.value * 255)];
+}
+
+#pragma mark - Helpful
+
+- (void) showAlertViewWithWarning:(NSString *)warning {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error was occured"
+                                                        message:warning
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    
+    [alertView show];
+}
+
+- (void) setHexacademicalColorCodeLabelText:(UILabel *)label viaFirstNumber:(NSInteger)first secondNumber:(NSInteger)second andThirdNumber:(NSInteger)third {
+    label.text = [NSString stringWithFormat:@"#%02lx%02lx%02lx", first, second, third];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSInteger replacementInteger = [string integerValue];
+    NSInteger currentValue = [textField.text integerValue];
+   
+    if ([string rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound) {
+        [self showAlertViewWithWarning:@"Field should contain only digits"];
+        return NO;
+    }
+    
+    if (range.length > 0) {
+        return YES;
+    }
+    
+    if (replacementInteger > 255) {
+        [self showAlertViewWithWarning:@"Field should contain number in range from 0 to 255"];
+        return NO;
+    }
+    
+    if (currentValue < 10) {
+        return YES;
+    } else if (currentValue < 100) {
+        if (currentValue * 10 + replacementInteger > 255) {
+            [self showAlertViewWithWarning:@"Field should contain number in range from 0 to 255"];
+            return NO;
+        } else {
+            return YES;
+        }
+    }
+    
+    [self showAlertViewWithWarning:@"Field should contain number in range from 0 to 255"];
+    return NO;
 }
 
 @end
