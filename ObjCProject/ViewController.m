@@ -93,13 +93,27 @@
 #pragma mark - Helpful
 
 - (void) showAlertViewWithWarning:(NSString *)warning {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error was occured"
+    /*UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error was occured"
                                                         message:warning
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     
-    [alertView show];
+    [alertView show];*/
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning"
+                                                                   message:warning
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                       [self dismissViewControllerAnimated:YES completion:nil];
+                                                   }
+                             ];
+    
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void) setHexacademicalColorCodeLabelText:(UILabel *)label viaFirstNumber:(NSInteger)first secondNumber:(NSInteger)second andThirdNumber:(NSInteger)third {
