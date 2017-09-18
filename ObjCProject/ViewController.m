@@ -92,7 +92,7 @@
 
 #pragma mark - Helpful
 
-- (void) showAlertViewWithWarning:(NSString *)warning {
+- (void) showAlertControllerWithWarning:(NSString *)warning {
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning"
                                                                    message:warning
@@ -125,7 +125,7 @@
     NSInteger currentValue = [textField.text integerValue];
    
     if ([string rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound) {
-        [self showAlertViewWithWarning:@"Field should contain only digits"];
+        [self showAlertControllerWithWarning:@"Field should contain only digits"];
         return NO;
     }
     
@@ -134,7 +134,7 @@
     }
     
     if (replacementInteger > 255) {
-        [self showAlertViewWithWarning:@"Field should contain number in range from 0 to 255"];
+        [self showAlertControllerWithWarning:@"Field should contain number in range from 0 to 255"];
         return NO;
     }
     
@@ -142,14 +142,14 @@
         return YES;
     } else if (currentValue < 100) {
         if (currentValue * 10 + replacementInteger > 255) {
-            [self showAlertViewWithWarning:@"Field should contain number in range from 0 to 255"];
+            [self showAlertControllerWithWarning:@"Field should contain number in range from 0 to 255"];
             return NO;
         } else {
             return YES;
         }
     }
     
-    [self showAlertViewWithWarning:@"Field should contain number in range from 0 to 255"];
+    [self showAlertControllerWithWarning:@"Field should contain number in range from 0 to 255"];
     return NO;
 }
 
