@@ -93,13 +93,6 @@
 #pragma mark - Helpful
 
 - (void) showAlertViewWithWarning:(NSString *)warning {
-    /*UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error was occured"
-                                                        message:warning
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    
-    [alertView show];*/
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning"
                                                                    message:warning
