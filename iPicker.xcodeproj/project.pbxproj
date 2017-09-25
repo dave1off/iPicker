@@ -42,7 +42,7 @@
 		18FF192A1F46395100EC7887 = {
 			isa = PBXGroup;
 			children = (
-				18FF19351F46395200EC7887 /* ObjCProject */,
+				18FF19351F46395200EC7887 /* iPicker */,
 				18FF19341F46395200EC7887 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,7 +55,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		18FF19351F46395200EC7887 /* ObjCProject */ = {
+		18FF19351F46395200EC7887 /* iPicker */ = {
 			isa = PBXGroup;
 			children = (
 				18FF19361F46395200EC7887 /* AppDelegate.h */,
@@ -68,7 +68,7 @@
 				18FF19441F46395200EC7887 /* Info.plist */,
 				18FF19451F46395200EC7887 /* main.m */,
 			);
-			path = ObjCProject;
+			path = iPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -105,7 +105,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 18FF192E1F46395100EC7887 /* Build configuration list for PBXProject "ObjCProject" */;
+			buildConfigurationList = 18FF192E1F46395100EC7887 /* Build configuration list for PBXProject "iPicker" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -278,7 +278,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ObjCProject/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/iPicker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.company.ObjCProject;
@@ -292,7 +292,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ObjCProject/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/iPicker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.company.ObjCProject;
@@ -304,7 +304,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18FF192E1F46395100EC7887 /* Build configuration list for PBXProject "ObjCProject" */ = {
+		18FF192E1F46395100EC7887 /* Build configuration list for PBXProject "iPicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18FF19471F46395200EC7887 /* Debug */,

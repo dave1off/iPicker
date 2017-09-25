@@ -59,11 +59,11 @@
                      }];
     
     if ([sender isEqual:self.firstComponentSlider]) {
-        self.firstComponentTextField.text = [NSString stringWithFormat:@"%ld", currentSliderValue];
+        self.firstComponentTextField.text = [NSString stringWithFormat:@"%ld", (long)currentSliderValue];
     } else if ([sender isEqual:self.secondComponentSlider]) {
-        self.secondComponentTextField.text = [NSString stringWithFormat:@"%ld", currentSliderValue];
+        self.secondComponentTextField.text = [NSString stringWithFormat:@"%ld", (long)currentSliderValue];
     } else {
-        self.thirdComponentTextField.text = [NSString stringWithFormat:@"%ld", currentSliderValue];
+        self.thirdComponentTextField.text = [NSString stringWithFormat:@"%ld", (long)currentSliderValue];
     }
     
     [self setHexacademicalColorCodeLabelText:self.hexacademicalColorCodeLabel
@@ -110,7 +110,7 @@
 }
 
 - (void) setHexacademicalColorCodeLabelText:(UILabel *)label viaFirstNumber:(NSInteger)first secondNumber:(NSInteger)second andThirdNumber:(NSInteger)third {
-    label.text = [NSString stringWithFormat:@"#%02lx%02lx%02lx", first, second, third];
+    label.text = [NSString stringWithFormat:@"#%02lx%02lx%02lx", (long)first, (long)second, (long)third];
 }
 
 #pragma mark - UITextFieldDelegate
