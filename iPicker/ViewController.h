@@ -12,6 +12,7 @@ typedef enum {
 @property (weak, nonatomic) IBOutlet UISlider *firstComponentSlider;
 @property (weak, nonatomic) IBOutlet UISlider *secondComponentSlider;
 @property (weak, nonatomic) IBOutlet UISlider *thirdComponentSlider;
+
 @property (weak, nonatomic) IBOutlet UITextField *firstComponentTextField;
 @property (weak, nonatomic) IBOutlet UITextField *secondComponentTextField;
 @property (weak, nonatomic) IBOutlet UITextField *thirdComponentTextField;

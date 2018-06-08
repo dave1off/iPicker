@@ -6,14 +6,6 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark - IBActions
 
 -(IBAction)handleSegmentedControl:(UISegmentedControl *)sender {
